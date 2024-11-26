@@ -6,7 +6,7 @@ export default function FooterComp() {
   return (
     <Footer container className='border border-t-8 border-teal-500'>
       <div className=''>
-       <Footer.Copyright href='#' by='chandan blog' year={new Date().getFullYear()}/>
+       <Footer.Copyright href='#' by='ChirKut Blog' year={new Date().getFullYear()}/>
       </div>
       <div className='flex gap-6 sm:mt-4 mt-4 sm:justify-center'>
         <Footer.Icon href='#' icon={BsFacebook}/>

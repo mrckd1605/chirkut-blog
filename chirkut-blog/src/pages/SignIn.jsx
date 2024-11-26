@@ -47,12 +47,12 @@ export default function SignIn() {
         {/* left part  */}
         <div className='flex-1'>
         <Link to="/" className='font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>Chandan</span>
+            <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>ChirKut</span>
             Blog
         </Link> 
         <p className='text-sm mt-5'>
-          well come to Chandan Blog. 
-          here you can gain knoledge of computer science
+          Well Come to ChirKut Blog.
+          If you have already an account please sign in in ChirKut blog
         </p>
         </div>
         {/* right part  */}
