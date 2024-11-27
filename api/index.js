@@ -7,7 +7,7 @@ import authRoutes from './routes/auth.route.js'
 
 dotenv.config()
 
-mongoose.connect(process.env.MONGOCONNECTION,{ autoIndex: true })
+mongoose.connect(process.env.localmongouri,{ autoIndex: true })
 .then(()=>{
     console.log("mongodb is connected")
 }).catch(err=>{

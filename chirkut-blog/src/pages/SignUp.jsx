@@ -12,24 +12,25 @@ export default function SignUp() {
     setFormData({...formData,[e.target.id]:e.target.value.trim()})
   }
 
+
   const handleSubmit = async (e)=>{
-    if(!formData.username || !formData.email || !formData.password){
-      setErrMessage("please filled all the inputbox")
-    }
     e.preventDefault()
     try{
       setLoading(true)
-      // setErrMessage(null)
+      setErrMessage(null)
       const res = await fetch('/api/auth/sign-up',
         {
-          methood: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(formData)
+          method:"POST",
+          body:JSON.stringify(formData),
+          headers:{
+              'Content-type': 'application/json; charset=UTF-8'
           }
+
+        }
       )
       const data = await res.json()
       if(data.success===false){
-        // setErrMessage(data.message)
+        setErrMessage(data.message)
       }
       if(res.ok){
         navigate('/sign-in')
@@ -37,8 +38,9 @@ export default function SignUp() {
       setLoading(false)
     }
     catch(error){
-      // setErrMessage(data.message)
+      setErrMessage(data.message)
       setLoading(false)
+      console.log("error is coming ",error)
     }
   }
   return (
