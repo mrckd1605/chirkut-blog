@@ -2,20 +2,25 @@ import express from 'express'
 const app = express()
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import userRouter from './routes/user.route.js'
+import userRoutes from './routes/user.route.js'
+import authRoutes from './routes/auth.route.js'
+
+
 
 dotenv.config()
 
 
-mongoose.connect(process.env.MONGOCONNECTION)
+mongoose.connect(process.env.MONGOCONNECTION,{ autoIndex: true })
 .then(()=>{
     console.log("mongodb is connected")
 }).catch(err=>{
     console.log("Mongodb arror is : ",err)
 })
 
-app.use('/api/user',userRouter)
+app.use(express.json())
 
+app.use('/api/user',userRoutes)
+app.use('/api/auth',authRoutes)
 
 
 
