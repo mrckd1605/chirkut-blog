@@ -12,24 +12,25 @@ export default function SignIn() {
     setFormData({...formData,[e.target.id]:e.target.value.trim()})
   }
 
+
   const handleSubmit = async (e)=>{
-    if(!formData.email || !formData.password){
-      setErrMessage("please filled all the inputbox")
-    }
     e.preventDefault()
     try{
       setLoading(true)
-      // setErrMessage(null)
+      setErrMessage(null)
       const res = await fetch('/api/auth/sign-in',
         {
-          methood: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(formData)
+          method:"POST",
+          body:JSON.stringify(formData),
+          headers:{
+              'Content-type': 'application/json; charset=UTF-8'
           }
+
+        }
       )
       const data = await res.json()
       if(data.success===false){
-        // setErrMessage(data.message)
+        setErrMessage(data.message)
       }
       if(res.ok){
         navigate('/')
@@ -37,8 +38,9 @@ export default function SignIn() {
       setLoading(false)
     }
     catch(error){
-      // setErrMessage(data.message)
+      setErrMessage(data.message)
       setLoading(false)
+      console.log("error is coming ",error)
     }
   }
   return (
@@ -51,8 +53,8 @@ export default function SignIn() {
             Blog
         </Link> 
         <p className='text-sm mt-5'>
-          Well Come to ChirKut Blog.
-          If you have already an account please sign in in ChirKut blog
+          Well Come to ChirKut Blog. 
+          In you have already an account please sign in with your email and password.
         </p>
         </div>
         {/* right part  */}
@@ -64,7 +66,7 @@ export default function SignIn() {
             </div>
             <div>
               <Label value = "Your Password"/>
-              <TextInput type='password' placeholder='*******' id='password' onChange={handleChange}/>
+              <TextInput type='password' placeholder='Password' id='password' onChange={handleChange}/>
             </div>
             <Button gradientDuoTone='purpleToPink' outline className='mt-5' type='submit' disabled = {loading}>
               {
@@ -73,7 +75,7 @@ export default function SignIn() {
                     <Spinner size='sm'/>
                     <span className='pl-3'>Loading..</span>
                   </>
-                ):'SignIn'
+                ):'SignIN'
               }
             </Button>
           </form>
