@@ -8,6 +8,8 @@ import SignIn from './pages/SignIn'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Header from './components/Header'
 import FooterComp from './components/FooterComp'
+import PrivateRoutes from './components/PrivateRoutes'
+
 
 export default function App() {
   return (
@@ -16,10 +18,12 @@ export default function App() {
       <Routes>
         <Route path='/' element = {<Home/>}/>
         <Route path='/about' element = {<About/>}/>
-        <Route path='/dashboard' element = {<Dashboard/>}/>
         <Route path='/Projects' element = {<Projects/>}/>
         <Route path='/sign-in' element = {<SignIn/>}/>
         <Route path='/sign-up' element = {<SignUp/>}/>
+        <Route element = {<PrivateRoutes/>}>
+        <Route path='/dashboard' element = {<Dashboard/>}/>
+        </Route>
       </Routes>
       <FooterComp/>
     </BrowserRouter>
